@@ -152,14 +152,13 @@ fun Content() {
                 textAlign = TextAlign.Center
             )
             Text(
-                modifier = Modifier.padding(top = 16.dp), text = stringResource(id = R.string.paintDescription), color = Color.Black
+                modifier = Modifier.padding(top = 16.dp),
+                text = stringResource(id = R.string.paintDescription),
+                color = Color.Black
             )
         }
     }
-
 }
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
