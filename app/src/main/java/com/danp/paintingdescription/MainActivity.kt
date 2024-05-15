@@ -66,7 +66,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Preview
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun viewContainer() {
     PaintingDescriptionTheme {
@@ -109,65 +108,60 @@ fun Content(mod: Modifier = Modifier) {
                 .width(350.dp)
                 .align(Alignment.Center)
         ) {
-            Content()
-        }
-    }
-
-}
-
-@Composable
-fun Content() {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.LightGray)
-            .padding(horizontal = 16.dp)
-    ) {
-        item {
-            Box(
-                modifier = Modifier.fillMaxWidth()
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.LightGray)
+                    .padding(horizontal = 16.dp)
             ) {
-                Card(modifier = Modifier.align(Alignment.CenterEnd).padding( top=10.dp)) {
-                    Row(
-                        modifier = Modifier
-                            .background(colorResource(id = R.color.backgroundApp))
-                            .padding(8.dp)
+                item {
+                    Box(
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_favorite),
-                            contentDescription = "favorites"
-                        )
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_share),
-                            contentDescription = "favorites"
-                        )
+                        Card(modifier = Modifier.align(Alignment.CenterEnd).padding( top=10.dp)) {
+                            Row(
+                                modifier = Modifier
+                                    .background(colorResource(id = R.color.backgroundApp))
+                                    .padding(8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_favorite),
+                                    contentDescription = "favorites"
+                                )
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_share),
+                                    contentDescription = "favorites"
+                                )
+                            }
+                        }
                     }
+                }
+                item {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(280.dp),
+                        painter = painterResource(id = R.drawable.cypresses),
+                        contentDescription = "cipreses"
+                    )
+                    Text(
+                        text = stringResource(id = R.string.paintTitle),
+                        fontSize = 32.sp,
+                        color = Color.Black,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = 16.dp),
+                        text = stringResource(id = R.string.paintDescription),
+                        color = Color.Black
+                    )
                 }
             }
         }
-        item {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(280.dp),
-                painter = painterResource(id = R.drawable.cypresses),
-                contentDescription = "cipreses"
-            )
-            Text(
-                text = stringResource(id = R.string.paintTitle),
-                fontSize = 32.sp,
-                color = Color.Black,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
-            Text(
-                modifier = Modifier.padding(top = 16.dp),
-                text = stringResource(id = R.string.paintDescription),
-                color = Color.Black
-            )
-        }
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
