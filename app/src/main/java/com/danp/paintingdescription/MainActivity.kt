@@ -6,15 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Home
@@ -37,7 +40,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -67,13 +72,21 @@ fun viewContainer() {
             topBar = { toolbar() },
             bottomBar = {
                 BottomAppBar(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    containerColor = colorResource(id = R.color.backgroundApp),
+
                     actions = {
                         IconButton(onClick = { /* do something */ }) {
                             Icon(Icons.Filled.Home, contentDescription = "Localized description")
                         }
+                        Spacer(modifier = Modifier.weight(1f))
                         IconButton(onClick = { /* do something */ }) {
-                            Icon(Icons.Filled.LocationOn, contentDescription = "Localized description")
+                            Icon(
+                                Icons.Filled.LocationOn,
+                                contentDescription = "Localized description"
+                            )
                         }
+                        Spacer(modifier = Modifier.weight(1f))
                         IconButton(onClick = { /* do something */ }) {
                             Icon(Icons.Filled.Person, contentDescription = "Localized description")
                         }
@@ -102,9 +115,6 @@ fun Content(mod: Modifier = Modifier) {
 
 @Composable
 fun Content() {
-    var counter by rememberSaveable {
-        mutableStateOf(1)
-    }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -142,36 +152,13 @@ fun Content() {
                 textAlign = TextAlign.Center
             )
             Text(
-                text = stringResource(id = R.string.paintDescription), color = Color.Black
+                modifier = Modifier.padding(top = 16.dp), text = stringResource(id = R.string.paintDescription), color = Color.Black
             )
         }
     }
 
 }
 
-@Preview
-@Composable
-fun bottomBar() {
-    BottomAppBar(
-
-
-//        containerColor = colorResource(id = R.color.backgroundApp),
-//        contentColor = colorResource(id = R.color.black),
-//        actions = {
-//            IconButton(onClick = { /*TODO*/ }) {
-//                Icon(imageVector = Icons.Filled.Home, contentDescription = "home")
-//            }
-//        }
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Bottom app bar",
-        )
-
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
@@ -183,35 +170,9 @@ fun toolbar() {
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         title = {
-            Text("painting information")
+            Text("Painting information")
         }
     )
 }
 
-@Preview
-@Composable
-fun BottomAppBarExample() {
-    Scaffold(
-        bottomBar = {
-            BottomAppBar(
-                actions = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
-                    }
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
-                    }
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
-                    }
-                },
-            )
-        },
-    ) { innerPadding ->
-        Text(
-            modifier = Modifier.padding(innerPadding),
-            text = "Example of a scaffold with a bottom app bar."
-        )
-    }
-}
 
