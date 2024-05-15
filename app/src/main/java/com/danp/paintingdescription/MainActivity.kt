@@ -1,5 +1,6 @@
 package com.danp.paintingdescription
 
+import android.graphics.Paint.Align
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -122,18 +124,28 @@ fun Content() {
             .padding(horizontal = 16.dp)
     ) {
         item {
-            Card {
-                Row(modifier = Modifier.padding(8.dp)) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_favorite),
-                        contentDescription = "favorites"
-                    )
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_share),
-                        contentDescription = "favorites"
-                    )
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Card(modifier = Modifier.align(Alignment.CenterEnd).padding( top=10.dp)) {
+                    Row(
+                        modifier = Modifier
+                            .background(colorResource(id = R.color.backgroundApp))
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_favorite),
+                            contentDescription = "favorites"
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_share),
+                            contentDescription = "favorites"
+                        )
+                    }
                 }
             }
+        }
+        item {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -141,9 +153,6 @@ fun Content() {
                 painter = painterResource(id = R.drawable.cypresses),
                 contentDescription = "cipreses"
             )
-
-        }
-        item {
             Text(
                 text = stringResource(id = R.string.paintTitle),
                 fontSize = 32.sp,
@@ -159,6 +168,7 @@ fun Content() {
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
