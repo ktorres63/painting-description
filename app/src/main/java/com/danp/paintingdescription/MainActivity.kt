@@ -15,9 +15,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -58,7 +65,21 @@ fun viewContainer() {
     PaintingDescriptionTheme {
         Scaffold(
             topBar = { toolbar() },
-            bottomBar = { bottombar() }
+            bottomBar = {
+                BottomAppBar(
+                    actions = {
+                        IconButton(onClick = { /* do something */ }) {
+                            Icon(Icons.Filled.Home, contentDescription = "Localized description")
+                        }
+                        IconButton(onClick = { /* do something */ }) {
+                            Icon(Icons.Filled.LocationOn, contentDescription = "Localized description")
+                        }
+                        IconButton(onClick = { /* do something */ }) {
+                            Icon(Icons.Filled.Person, contentDescription = "Localized description")
+                        }
+                    },
+                )
+            }
         ) { innerPadding ->
             Content(Modifier.padding(innerPadding))
         }
@@ -102,14 +123,15 @@ fun Content() {
                         contentDescription = "favorites"
                     )
                 }
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(280.dp),
-                    painter = painterResource(id = R.drawable.cypresses),
-                    contentDescription = "cipreses"
-                )
             }
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(280.dp),
+                painter = painterResource(id = R.drawable.cypresses),
+                contentDescription = "cipreses"
+            )
+
         }
         item {
             Text(
@@ -129,13 +151,18 @@ fun Content() {
 
 @Preview
 @Composable
-fun bottombar() {
+fun bottomBar() {
     BottomAppBar(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-//        contentColor = MaterialTheme.colorScheme.primary,
-        contentColor = colorResource(id = R.color.teal_200),
 
-        ) {
+
+//        containerColor = colorResource(id = R.color.backgroundApp),
+//        contentColor = colorResource(id = R.color.black),
+//        actions = {
+//            IconButton(onClick = { /*TODO*/ }) {
+//                Icon(imageVector = Icons.Filled.Home, contentDescription = "home")
+//            }
+//        }
+    ) {
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -160,3 +187,31 @@ fun toolbar() {
         }
     )
 }
+
+@Preview
+@Composable
+fun BottomAppBarExample() {
+    Scaffold(
+        bottomBar = {
+            BottomAppBar(
+                actions = {
+                    IconButton(onClick = { /* do something */ }) {
+                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
+                    }
+                    IconButton(onClick = { /* do something */ }) {
+                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
+                    }
+                    IconButton(onClick = { /* do something */ }) {
+                        Icon(Icons.Filled.Check, contentDescription = "Localized description")
+                    }
+                },
+            )
+        },
+    ) { innerPadding ->
+        Text(
+            modifier = Modifier.padding(innerPadding),
+            text = "Example of a scaffold with a bottom app bar."
+        )
+    }
+}
+
